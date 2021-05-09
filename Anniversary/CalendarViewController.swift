@@ -96,6 +96,23 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         return cell
     }
 
+    
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if(editingStyle == UITableViewCell.EditingStyle.delete) {
+            do{
+                let realm = try Realm()
+                try realm.write {
+                    realm.delete(self.itemList[indexPath.row])
+                }
+                
+            }catch{
+            }
+            tableView.reloadData()
+        }
+    }
+    
+    
     /*
     // MARK: - Navigation
 
