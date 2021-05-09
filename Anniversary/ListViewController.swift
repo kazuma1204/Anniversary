@@ -15,6 +15,14 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var itemList: Results<Item>!
     let realm = try! Realm()
     
+    var selectDate: Date!
+    var selectTitle: String!
+    var selectContent: String?
+    
+    var selectItem: Item!
+    
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,11 +40,29 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 
     }
     
+//    再編集のために入れてみた。
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toVC" {
+            let RecordViewController = segue.destination as!  RecordViewController
+            RecordViewController.date = selectDate
+            RecordViewController.title = selectTitle
+            RecordViewController.content = selectContent
+        }
+    }
+
+    
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return itemList.count
     }
     
+    
+    
+    func tableView(_ tableView: UITableView, didselectRowAt indexPath: IndexPath)
+    {
+        selectItem = itemList[indexPath.row]
+        performSegue(withIdentifier: "toVC", sender: nil)
+    }
     
     
     //追加④ セルに値を設定するデータソースメソッド（必須）

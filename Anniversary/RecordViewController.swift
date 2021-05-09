@@ -10,16 +10,20 @@ import RealmSwift
 
 class RecordViewController: UIViewController {
     
-    @IBOutlet weak var dateTextField: UITextField!
+    var date: Date!
+    var content: String?
+    
+    @IBOutlet var dateTextField: UITextField!
     @IBOutlet var textview: UITextView!
-    @IBOutlet weak var titleTextField: UITextField!
+    @IBOutlet var titleTextField: UITextField!
     
    
     var datePicker: UIDatePicker = UIDatePicker()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+
         // ピッカー設定
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = UIDatePicker.Mode.date
@@ -38,9 +42,17 @@ class RecordViewController: UIViewController {
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = toolbar
         
-        // デフォルト日付
-        //        let formatter = DateFormatter()
-        //        formatter.dateFormat = "yyyy-MM-dd"
+        
+        // デフォルト日付　付け足した
+                let formatter = DateFormatter()
+                formatter.dateFormat = "yyyy年MM月dd日"
+        let dateText: String = formatter.string(from: date)
+        dateTextField.text = dateText
+//        付け足した
+        textview.text = content
+        titleTextField.text = title
+        
+        
         //        datePicker.date = formatter.date(from: "2021-4-14")!
         
         
