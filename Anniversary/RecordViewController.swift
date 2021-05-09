@@ -22,10 +22,11 @@ class RecordViewController: UIViewController {
         
         // ピッカー設定
         datePicker.preferredDatePickerStyle = .wheels
-        datePicker.datePickerMode = UIDatePicker.Mode.dateAndTime
+        datePicker.datePickerMode = UIDatePicker.Mode.date
         datePicker.timeZone = NSTimeZone.local
         datePicker.locale = Locale.current
         dateTextField.inputView = datePicker
+        
         
         // 決定バーの生成
         let toolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 35))
@@ -53,7 +54,7 @@ class RecordViewController: UIViewController {
         // 日付のフォーマット
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
-        dateTextField.text = "\(formatter.string(from: Date()))"
+        dateTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
     

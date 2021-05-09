@@ -16,6 +16,8 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     
     var itemList: Results<Item>!
     let realm = try! Realm()
+    
+    var selectDate: Date = Date()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,13 +33,15 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         super.viewWillAppear(animated)
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
-        let date = "\(formatter.string(from: Date()))"
+        let date = "\(formatter.string(from: selectDate))"
         self.itemList = realm.objects(Item.self).filter("date == %@", date)
         tableview.reloadData()
     }
     
+    // 選択した日付が変更されるたびに呼ばれる
     func calendar(_ calendar: FSCalendar, didSelect date: Date, at monthPosition: FSCalendarMonthPosition) {
          print("select")
+        selectDate = date
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy年MM月dd日"
         let date = "\(formatter.string(from: date))"

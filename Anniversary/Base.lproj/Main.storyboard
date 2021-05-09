@@ -84,28 +84,35 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" id="yrp-gb-6lt">
-                                        <rect key="frame" x="0.0" y="28" width="374" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="Cell" rowHeight="177" id="yrp-gb-6lt">
+                                        <rect key="frame" x="0.0" y="28" width="374" height="177"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="yrp-gb-6lt" id="U3X-CJ-XZr">
-                                            <rect key="frame" x="0.0" y="0.0" width="374" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="374" height="177"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq7-5D-ohh">
-                                                    <rect key="frame" x="79" y="0.0" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="4" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTO-Wv-b0S">
+                                                    <rect key="frame" x="30" y="57.5" width="314" height="100.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QTO-Wv-b0S">
-                                                    <rect key="frame" x="280" y="11" width="42" height="21"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hq7-5D-ohh">
+                                                    <rect key="frame" x="62" y="18" width="250" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
+                                            <constraints>
+                                                <constraint firstItem="hq7-5D-ohh" firstAttribute="leading" secondItem="U3X-CJ-XZr" secondAttribute="leadingMargin" constant="42" id="15H-tv-Tr6"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="hq7-5D-ohh" secondAttribute="trailing" constant="42" id="7Ty-La-uts"/>
+                                                <constraint firstAttribute="bottom" secondItem="QTO-Wv-b0S" secondAttribute="bottom" constant="19" id="TEH-uj-Nc0"/>
+                                                <constraint firstItem="hq7-5D-ohh" firstAttribute="top" secondItem="U3X-CJ-XZr" secondAttribute="topMargin" constant="7" id="aEA-Q6-Sa0"/>
+                                                <constraint firstAttribute="trailing" secondItem="QTO-Wv-b0S" secondAttribute="trailing" constant="30" id="aOa-R0-maN"/>
+                                                <constraint firstItem="QTO-Wv-b0S" firstAttribute="leading" secondItem="U3X-CJ-XZr" secondAttribute="leading" constant="30" id="nOv-Bb-cVH"/>
+                                                <constraint firstItem="QTO-Wv-b0S" firstAttribute="top" secondItem="hq7-5D-ohh" secondAttribute="bottom" constant="19" id="yo6-xf-TbI"/>
+                                            </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                 </prototypes>
