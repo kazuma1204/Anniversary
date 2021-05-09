@@ -15,11 +15,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var itemList: Results<Item>!
     let realm = try! Realm()
     
-    var selectDate: Date!
-    var selectTitle: String!
-    var selectContent: String?
-    
-    var selectItem: Item!
+    var selectItem: Item?
     
     
 
@@ -44,9 +40,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toVC" {
             let RecordViewController = segue.destination as!  RecordViewController
-            RecordViewController.date = selectDate
-            RecordViewController.title = selectTitle
-            RecordViewController.content = selectContent
+            RecordViewController.date = selectItem?.date
+            RecordViewController.title = selectItem?.title
+            RecordViewController.content = selectItem?.content
         }
     }
 
@@ -58,11 +54,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     
-    func tableView(_ tableView: UITableView, didselectRowAt indexPath: IndexPath)
-    {
-        selectItem = itemList[indexPath.row]
-        performSegue(withIdentifier: "toVC", sender: nil)
-    }
+
     
     
     //追加④ セルに値を設定するデータソースメソッド（必須）
@@ -97,7 +89,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        selectItem = itemList[indexPath.row]
+        performSegue(withIdentifier: "toVC", sender: nil)
+    }
     
+    @IBAction func plus(for segue: UIStoryboardSegue, sender: Any?) {
+        performSegue(withIdentifier: "toVC", sender: nil)
+        let RecordViewController = segue.destination as!  RecordViewController
+        RecordViewController.date = ""
+        RecordViewController.title = ""
+        RecordViewController.content = ""
+    }
     /*
      // MARK: - Navigation
      

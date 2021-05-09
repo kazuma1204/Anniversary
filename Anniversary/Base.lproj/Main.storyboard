@@ -59,6 +59,7 @@
                     <navigationItem key="navigationItem" title="List" id="vCd-ds-Oca">
                         <barButtonItem key="rightBarButtonItem" title="＋" id="SxC-k0-jOk">
                             <connections>
+                                <action selector="plus" destination="7fO-en-xoh" id="pBP-8P-r7v"/>
                                 <segue destination="7iY-Tn-pxO" kind="presentation" identifier="toVC" id="gNg-Tq-NOY"/>
                             </connections>
                         </barButtonItem>
