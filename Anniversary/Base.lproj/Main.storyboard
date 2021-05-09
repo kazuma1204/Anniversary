@@ -126,7 +126,18 @@
                         <viewLayoutGuide key="safeArea" id="Mym-Jo-lai"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
-                    <navigationItem key="navigationItem" id="6rK-oz-wJ3"/>
+                    <navigationItem key="navigationItem" id="6rK-oz-wJ3">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="LHq-ki-0Ke">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sgC-Vq-rkE">
+                                <rect key="frame" x="286" y="96" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <segue destination="7iY-Tn-pxO" kind="showDetail" identifier="toVC2" id="WfM-Kv-dEG"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myCalendar" destination="JcX-e1-aUq" id="oDn-pv-Rh3"/>
                         <outlet property="tableview" destination="Ij1-1c-HcX" id="u99-NR-sSd"/>
@@ -252,6 +263,9 @@
             <point key="canvasLocation" x="-955.07246376811599" y="290.625"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="WfM-Kv-dEG"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

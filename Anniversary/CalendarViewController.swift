@@ -17,6 +17,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     var itemList: Results<Item>!
     let realm = try! Realm()
     
+    
+
+//    これ、一個したのやつとバッティングするかも.カレンダー下セルから移動用
+    var selectItem: Item?
+    
+    
     var selectDate: Date = Date()
 
     override func viewDidLoad() {
@@ -27,6 +33,25 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         tableview.delegate = self
         // Do any additional setup after loading the view.
     }
+    
+//    カレンダー下セルから移動用
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toVC2" {
+            let RecordViewController = segue.destination as!  RecordViewController
+            RecordViewController.date = selectItem?.date
+            RecordViewController.title = selectItem?.title
+            RecordViewController.content = selectItem?.content
+        }
+    }
+    
+//    カレンダー下セルから移動用
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        selectItem = itemList[indexPath.row]
+        performSegue(withIdentifier: "toVC2", sender: nil)
+        selectItem = nil
+    }
+
     
     
     override func viewWillAppear(_ animated: Bool) {

@@ -31,6 +31,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+//        レルム内の並び替え（sort）
         self.itemList = realm.objects(Item.self).sorted(byKeyPath: "date", ascending: true)
         tableview.reloadData()
 
@@ -89,18 +90,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         selectItem = itemList[indexPath.row]
         performSegue(withIdentifier: "toVC", sender: nil)
+        selectItem = nil
     }
+    
+    
     
     @IBAction func plus(for segue: UIStoryboardSegue, sender: Any?) {
         performSegue(withIdentifier: "toVC", sender: nil)
-        let RecordViewController = segue.destination as!  RecordViewController
-        RecordViewController.date = ""
-        RecordViewController.title = ""
-        RecordViewController.content = ""
+ 
     }
     /*
      // MARK: - Navigation
