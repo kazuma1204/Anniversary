@@ -12,6 +12,7 @@ class RecordViewController: UIViewController {
     
     var date: String?
     var content: String?
+    var selectId: Int?
     
     @IBOutlet var dateTextField: UITextField!
     @IBOutlet var textview: UITextView!
@@ -76,18 +77,40 @@ class RecordViewController: UIViewController {
     
     
     @IBAction func save() {
-        var maxId: Int { return try! Realm().objects(Item.self).sorted(byKeyPath: "id").last?.id ?? 0 }
-        let item:Item = Item()
-        item.date = self.dateTextField.text
-        item.title = self.titleTextField.text
-        item.content = self.textview.text
-        item.id = maxId + 1
         
-        // 保存
-        let realm = try! Realm()
-        try! realm.write {
-            realm.add(item)
+        if selectId == nil {
+            var maxId: Int { return try! Realm().objects(Item.self).sorted(byKeyPath: "id").last?.id ?? 0 }
+            let item:Item = Item()
+            
+
+                item.date = self.dateTextField.text
+                item.title = self.titleTextField.text
+                item.content = self.textview.text
+                item.id = maxId + 1
+                
+            
+            // 保存
+            let realm = try! Realm()
+            try! realm.write {
+                realm.add(item)
+            }
+            
+        } else {
+            
+            let realm = try! Realm()
+            let item = realm.objects(Item.self).filter("date == %@", selectId!).first!
+            
+            try! realm.write {
+                item.date = self.dateTextField.text
+                item.title = self.titleTextField.text
+                item.content = self.textview.text
+            }
+            
         }
+        
+        
+        
+        
         
         self.dismiss(animated: true, completion: nil)
         
