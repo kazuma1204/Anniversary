@@ -44,6 +44,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             RecordViewController.date = selectItem?.date
             RecordViewController.title = selectItem?.title
             RecordViewController.content = selectItem?.content
+            RecordViewController.selectId = selectItem?.id
         }
     }
 
@@ -102,7 +103,6 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBAction func plus(for segue: UIStoryboardSegue, sender: Any?) {
         performSegue(withIdentifier: "toVC", sender: nil)
- 
     }
     /*
      // MARK: - Navigation

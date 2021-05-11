@@ -41,6 +41,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
             RecordViewController.date = selectItem?.date
             RecordViewController.title = selectItem?.title
             RecordViewController.content = selectItem?.content
+            RecordViewController.selectId = selectItem?.id
         }
     }
     

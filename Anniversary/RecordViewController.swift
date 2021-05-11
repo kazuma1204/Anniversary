@@ -44,10 +44,9 @@ class RecordViewController: UIViewController {
         dateTextField.inputAccessoryView = toolbar
         
         
-        // デフォルト日付　付け足した
+
              
         dateTextField.text = date
-//        付け足した
         textview.text = content
         titleTextField.text = title
         
