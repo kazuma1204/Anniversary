@@ -22,6 +22,8 @@
 		640B835E25C6555F007826AD /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B835D25C6555F007826AD /* ListViewController.swift */; };
 		640B836625C65B7C007826AD /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B836525C65B7C007826AD /* RecordViewController.swift */; };
 		640B837625C68A60007826AD /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 640B837525C68A60007826AD /* Item.swift */; };
+		64686772265A2C0900234504 /* TabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64686771265A2C0900234504 /* TabBar.swift */; };
+		64F19B06264AB4130049D877 /* DisplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 64F19B05264AB4120049D877 /* DisplayViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		640B835D25C6555F007826AD /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		640B836525C65B7C007826AD /* RecordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecordViewController.swift; sourceTree = "<group>"; };
 		640B837525C68A60007826AD /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
+		64686771265A2C0900234504 /* TabBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBar.swift; sourceTree = "<group>"; };
+		64F19B05264AB4120049D877 /* DisplayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisplayViewController.swift; sourceTree = "<group>"; };
 		66EC34799CB5805674DB9CA7 /* Pods-Anniversary.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Anniversary.release.xcconfig"; path = "Target Support Files/Pods-Anniversary/Pods-Anniversary.release.xcconfig"; sourceTree = "<group>"; };
 		806843629B508ABDAFA569D4 /* Pods_AnniversaryTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AnniversaryTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B08AB974FDA99712B55FBD08 /* Pods_Anniversary_AnniversaryUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Anniversary_AnniversaryUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,10 +146,12 @@
 				640B832925B40C99007826AD /* ViewController.swift */,
 				640B832B25B40C99007826AD /* Main.storyboard */,
 				640B837525C68A60007826AD /* Item.swift */,
+				64686771265A2C0900234504 /* TabBar.swift */,
 				640B832E25B40CA1007826AD /* Assets.xcassets */,
 				640B836525C65B7C007826AD /* RecordViewController.swift */,
 				640B835D25C6555F007826AD /* ListViewController.swift */,
 				640B835825C65523007826AD /* CalendarViewController.swift */,
+				64F19B05264AB4120049D877 /* DisplayViewController.swift */,
 				640B833025B40CA1007826AD /* LaunchScreen.storyboard */,
 				640B833325B40CA1007826AD /* Info.plist */,
 			);
@@ -418,9 +424,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				64686772265A2C0900234504 /* TabBar.swift in Sources */,
 				640B835925C65523007826AD /* CalendarViewController.swift in Sources */,
 				640B832A25B40C99007826AD /* ViewController.swift in Sources */,
 				640B832625B40C99007826AD /* AppDelegate.swift in Sources */,
+				64F19B06264AB4130049D877 /* DisplayViewController.swift in Sources */,
 				640B836625C65B7C007826AD /* RecordViewController.swift in Sources */,
 				640B837625C68A60007826AD /* Item.swift in Sources */,
 				640B835E25C6555F007826AD /* ListViewController.swift in Sources */,

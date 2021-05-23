@@ -36,20 +36,27 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     
 //    カレンダー下セルから移動用
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toVC2" {
+        if segue.identifier == "toVC3" {
+            let DisplayViewController = segue.destination as!  DisplayViewController
+            DisplayViewController.date = selectItem?.date
+            DisplayViewController.title = selectItem?.title
+            DisplayViewController.content = selectItem?.content
+            DisplayViewController.selectId = selectItem?.id
+        } else if segue.identifier == "toVC2" {
             let RecordViewController = segue.destination as!  RecordViewController
-            RecordViewController.date = selectItem?.date
-            RecordViewController.title = selectItem?.title
-            RecordViewController.content = selectItem?.content
-            RecordViewController.selectId = selectItem?.id
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy年MM月dd日"
+            let date = "\(formatter.string(from: selectDate))"
+            RecordViewController.date = date
         }
+        
     }
     
 //    カレンダー下セルから移動用
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
         selectItem = itemList[indexPath.row]
-        performSegue(withIdentifier: "toVC2", sender: nil)
+        performSegue(withIdentifier: "toVC3", sender: nil)
         selectItem = nil
     }
 

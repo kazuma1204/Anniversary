@@ -40,11 +40,11 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    再編集のために入れてみた。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toVC" {
-            let RecordViewController = segue.destination as!  RecordViewController
-            RecordViewController.date = selectItem?.date
-            RecordViewController.title = selectItem?.title
-            RecordViewController.content = selectItem?.content
-            RecordViewController.selectId = selectItem?.id
+            let DisplayViewController = segue.destination as!  DisplayViewController
+            DisplayViewController.date = selectItem?.date
+            DisplayViewController.title = selectItem?.title
+            DisplayViewController.content = selectItem?.content
+            DisplayViewController.selectId = selectItem?.id
         }
     }
 

@@ -31,6 +31,9 @@ class RecordViewController: UIViewController {
         datePicker.timeZone = NSTimeZone.local
         datePicker.locale = Locale.current
         dateTextField.inputView = datePicker
+        datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
+        
+
         
         
         // 決定バーの生成
@@ -50,7 +53,15 @@ class RecordViewController: UIViewController {
         textview.text = content
         titleTextField.text = title
         
+        if date == nil {
         
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy年MM月dd日"
+        dateTextField.text = "\(formatter.string(from: datePicker.date))"
+            
+        } else {
+        dateTextField.text = date
+        }
         
         //        datePicker.date = formatter.date(from: "2021-4-14")!
         
@@ -97,7 +108,7 @@ class RecordViewController: UIViewController {
         } else {
             
             let realm = try! Realm()
-            let item = realm.objects(Item.self).filter("date == %@", selectId!).first!
+            let item = realm.objects(Item.self).filter("id == %d", selectId!).first!
             
             try! realm.write {
                 item.date = self.dateTextField.text
@@ -108,10 +119,26 @@ class RecordViewController: UIViewController {
         }
         
         
+        if titleTextField.text != "" {
+//        アラート出すやつ。
+        let savealert: UIAlertController = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
+        
+        savealert.addAction(UIAlertAction(title:"OK", style: .default, handler: { action in
+            self.dismiss(animated: true, completion: nil)
+        }))
+        
+        present(savealert, animated: true, completion: nil)
+            
+        } else {
+            let notalert: UIAlertController = UIAlertController(title: "保存できません", message: "タイトルを入力してください", preferredStyle: .alert)
+            
+            notalert.addAction(UIAlertAction(title:"OK", style: .cancel, handler: { action in
+            }))
+            
+            present(notalert, animated: true, completion: nil)
+        }
         
         
-        
-        self.dismiss(animated: true, completion: nil)
         
         
     }

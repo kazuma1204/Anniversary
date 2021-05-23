@@ -60,12 +60,13 @@
                         <barButtonItem key="rightBarButtonItem" title="＋" id="SxC-k0-jOk">
                             <connections>
                                 <action selector="plus" destination="7fO-en-xoh" id="pBP-8P-r7v"/>
-                                <segue destination="7iY-Tn-pxO" kind="presentation" identifier="toVC" id="gNg-Tq-NOY"/>
+                                <segue destination="7iY-Tn-pxO" kind="presentation" id="G1r-kr-HjD"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="tableview" destination="kTN-S7-MCu" id="nHa-sv-fwS"/>
+                        <segue destination="PGO-9A-xDW" kind="show" identifier="toVC" id="Clc-Iz-asW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2nJ-WM-1gY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -129,7 +130,7 @@
                     <navigationItem key="navigationItem" id="6rK-oz-wJ3">
                         <barButtonItem key="rightBarButtonItem" style="plain" id="LHq-ki-0Ke">
                             <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="sgC-Vq-rkE">
-                                <rect key="frame" x="286" y="96" width="46" height="30"/>
+                                <rect key="frame" x="348" y="7" width="46" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
@@ -141,16 +142,17 @@
                     <connections>
                         <outlet property="myCalendar" destination="JcX-e1-aUq" id="oDn-pv-Rh3"/>
                         <outlet property="tableview" destination="Ij1-1c-HcX" id="u99-NR-sSd"/>
+                        <segue destination="PGO-9A-xDW" kind="show" identifier="toVC3" id="XUH-dw-B08"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qxY-36-XDa" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-44.927536231884062" y="-420.53571428571428"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--Tab Bar-->
         <scene sceneID="Hf3-rb-p44">
             <objects>
-                <tabBarController id="jTS-2B-3nG" sceneMemberID="viewController">
+                <tabBarController id="jTS-2B-3nG" customClass="TabBar" customModule="Anniversary" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="w9i-55-05Q">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -165,11 +167,11 @@
             </objects>
             <point key="canvasLocation" x="-1877" y="-200"/>
         </scene>
-        <!--Item 1-->
+        <!--Navigation Controller-->
         <scene sceneID="3SZ-2F-Jje">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Zcq-nj-RRN" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item 1" id="SEy-fd-xnu"/>
+                    <tabBarItem key="tabBarItem" title="" image="ホームのフリーアイコン素材" id="SEy-fd-xnu"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NVu-tH-T6M">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -241,13 +243,77 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhU-T3-Vai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="771.01449275362324" y="290.625"/>
+            <point key="canvasLocation" x="1674" y="159"/>
         </scene>
-        <!--Item-->
+        <!--Display View Controller-->
+        <scene sceneID="tix-D0-8SU">
+            <objects>
+                <viewController id="PGO-9A-xDW" customClass="DisplayViewController" customModule="Anniversary" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="BgQ-rG-z30">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="2nu-GT-3jG">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BvR-6q-duX">
+                                        <rect key="frame" x="118" y="222" width="178" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKB-RU-uV6">
+                                        <rect key="frame" x="71" y="353" width="273" height="299"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1it-kF-ijc">
+                                        <rect key="frame" x="118" y="127" width="182" height="56"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <viewLayoutGuide key="safeArea" id="JBl-id-jIh"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="unX-SX-LYC"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="t8T-rr-iV5">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="W8r-Dd-mET">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="Een-FK-oo1">
+                                <rect key="frame" x="364" y="7" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="edit"/>
+                                <connections>
+                                    <action selector="editFor:sender:" destination="PGO-9A-xDW" eventType="touchUpInside" id="28v-BU-YWS"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="contentLabel" destination="jKB-RU-uV6" id="1gU-9g-Fhn"/>
+                        <outlet property="dateLabel" destination="1it-kF-ijc" id="pFD-Wa-rQB"/>
+                        <outlet property="titleLabel" destination="BvR-6q-duX" id="zKg-j1-iej"/>
+                        <segue destination="7iY-Tn-pxO" kind="presentation" identifier="toVC0" id="siP-AG-52t"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PLt-AL-IeH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="775" y="291"/>
+        </scene>
+        <!--Navigation Controller-->
         <scene sceneID="Vpg-D2-pvU">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="opo-Vc-4r4" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="v1R-56-oIX"/>
+                    <tabBarItem key="tabBarItem" title="" image="虫眼鏡の無料アイコン8" id="v1R-56-oIX"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="XyD-E8-uiB">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -264,9 +330,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Clc-Iz-asW"/>
         <segue reference="WfM-Kv-dEG"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="ホームのフリーアイコン素材" width="30" height="30"/>
+        <image name="虫眼鏡の無料アイコン8" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
