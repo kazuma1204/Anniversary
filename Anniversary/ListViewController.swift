@@ -8,9 +8,10 @@
 import UIKit
 import RealmSwift
 
-class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ListViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
     
     @IBOutlet var tableview: UITableView!
+    @IBOutlet var searchBar: UISearchBar!
     
     var itemList: Results<Item>!
     let realm = try! Realm()
@@ -19,13 +20,23 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
 
+    var searchResult: [Item]!
+    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         tableview.dataSource = self
         tableview.delegate = self
-       
+        
+        searchBar.delegate = self
+        searchBar?.enablesReturnKeyAutomatically = false
+        
+ 
+        itemList = realm.objects(Item.self)
+        searchResult = Array(itemList)
+        
         // Do any additional setup after loading the view.
     }
     
@@ -33,8 +44,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         super.viewWillAppear(animated)
 //        レルム内の並び替え（sort）
         self.itemList = realm.objects(Item.self).sorted(byKeyPath: "date", ascending: true)
+        print(itemList)
+        searchResult = Array(itemList)
         tableview.reloadData()
-
+        print(searchResult)
     }
     
 //    再編集のために入れてみた。
@@ -51,12 +64,36 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return itemList.count
+        return searchResult.count
     }
     
     
-    
+     
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        //検索結果配列を空にする。
+        searchResult.removeAll()
 
+            if searchBar.text == "" {
+                //検索文字列が空の場合はすべてを表示する。
+                searchResult = Array(itemList)
+            } else {
+                //検索文字列を含むデータを検索結果配列に追加する。
+                for data in itemList {
+                    if data.title!.contains(searchBar.text!) {
+                        searchResult.append(data)
+                    }
+                }
+            }
+
+            //テーブルを再読み込みする。
+            tableview.reloadData()
+        //キーボードを閉じる。
+        view.endEditing(true)
+        if let word = searchBar.text {
+                    // デバッグエリアに出力
+                    print(word)
+    }
+    }
     
     
     //追加④ セルに値を設定するデータソースメソッド（必須）
@@ -65,10 +102,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         let cell: UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
         
         let dateLabel = cell.contentView.viewWithTag(1) as! UILabel
-        dateLabel.text = itemList[indexPath.row].date
+        dateLabel.text = searchResult[indexPath.row].date
         
         let titleLabel = cell.contentView.viewWithTag(2) as! UILabel
-        titleLabel.text = itemList[indexPath.row].title
+        titleLabel.text = searchResult[indexPath.row].title
         
         // セルに表示する値を設定する
         
@@ -100,6 +137,9 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
+   
+    
+    
     
     @IBAction func plus(for segue: UIStoryboardSegue, sender: Any?) {
         performSegue(withIdentifier: "toVC", sender: nil)
@@ -116,3 +156,4 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
+ 
