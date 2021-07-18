@@ -31,6 +31,15 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         myCalendar.delegate = self
         tableview.dataSource = self
         tableview.delegate = self
+        
+        self.myCalendar.appearance.headerDateFormat = "YYYY年MM月"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[0].text = "日"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[1].text = "月"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[2].text = "火"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[3].text = "水"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[4].text = "木"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[5].text = "金"
+        self.myCalendar.calendarWeekdayView.weekdayLabels[6].text = "土"
         // Do any additional setup after loading the view.
     }
     
@@ -45,7 +54,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         } else if segue.identifier == "toVC2" {
             let RecordViewController = segue.destination as!  RecordViewController
             let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy年MM月dd日"
+            formatter.dateFormat = "MM月dd日"
             let date = "\(formatter.string(from: selectDate))"
             RecordViewController.date = date
         }
@@ -65,7 +74,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日"
+        formatter.dateFormat = "MM月dd日"
         let date = "\(formatter.string(from: selectDate))"
         self.itemList = realm.objects(Item.self).filter("date == %@", date)
         tableview.reloadData()
@@ -76,7 +85,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
          print("select")
         selectDate = date
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日"
+        formatter.dateFormat = "MM月dd日"
         let date = "\(formatter.string(from: date))"
         self.itemList = realm.objects(Item.self).filter("date == %@", date)
         tableview.reloadData()

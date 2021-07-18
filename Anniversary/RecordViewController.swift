@@ -56,7 +56,7 @@ class RecordViewController: UIViewController {
         if date == nil {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日"
+        formatter.dateFormat = "MM月dd日"
         dateTextField.text = "\(formatter.string(from: datePicker.date))"
             
         } else {
@@ -80,7 +80,7 @@ class RecordViewController: UIViewController {
         
         // 日付のフォーマット
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy年MM月dd日"
+        formatter.dateFormat = "MM月dd日"
         dateTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     

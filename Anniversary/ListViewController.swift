@@ -19,10 +19,10 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectItem: Item?
     
     
-
+    
     var searchResult: [Item]!
     
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,16 +33,20 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         searchBar.delegate = self
         searchBar?.enablesReturnKeyAutomatically = false
         
- 
+        
         itemList = realm.objects(Item.self)
         searchResult = Array(itemList)
+        
+        searchBar.delegate = self;
+        
+        
         
         // Do any additional setup after loading the view.
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        レルム内の並び替え（sort）
+        //        レルム内の並び替え（sort）
         self.itemList = realm.objects(Item.self).sorted(byKeyPath: "date", ascending: true)
         print(itemList)
         searchResult = Array(itemList)
@@ -50,7 +54,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         print(searchResult)
     }
     
-//    再編集のために入れてみた。
+    //    再編集のために入れてみた。
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toVC" {
             let DisplayViewController = segue.destination as!  DisplayViewController
@@ -60,7 +64,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             DisplayViewController.selectId = selectItem?.id
         }
     }
-
+    
     
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -68,31 +72,45 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-     
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        //検索結果配列を空にする。
+//    サーチバーを開いたとき
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(true, animated: true)
         searchResult.removeAll()
+        tableview.reloadData()
+    }
 
-            if searchBar.text == "" {
-                //検索文字列が空の場合はすべてを表示する。
-                searchResult = Array(itemList)
-            } else {
-                //検索文字列を含むデータを検索結果配列に追加する。
-                for data in itemList {
-                    if data.title!.contains(searchBar.text!) {
-                        searchResult.append(data)
-                    }
+//    エンターを押したとき（キャンセルバージョン）
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchResult = Array(itemList)//できない
+        searchBar.setShowsCancelButton(false, animated: true)
+            searchBar.resignFirstResponder()
+        tableview.reloadData()
+        }
+    
+//    テキストを変えたとき（打ったとき）
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != "" {
+            //検索文字列を含むデータを検索結果配列に追加する。
+            for data in itemList {
+                if data.title!.contains(searchBar.text!) {
+                    searchResult.append(data)
                 }
             }
-
-            //テーブルを再読み込みする。
-            tableview.reloadData()
+        }
+        
+        //テーブルを再読み込みする。
+        tableview.reloadData()
+    }
+    
+    
+//　エンターを押したときに作動
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //キーボードを閉じる。
         view.endEditing(true)
         if let word = searchBar.text {
-                    // デバッグエリアに出力
-                    print(word)
-    }
+            // デバッグエリアに出力
+            print(word)
+        }
     }
     
     
@@ -111,7 +129,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         return cell
     }
-
+    
     
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -119,7 +137,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
             do{
                 let realm = try Realm()
                 try realm.write {
-                    realm.delete(self.itemList[indexPath.row])
+                    realm.delete(self.searchResult[indexPath.row])
                 }
                 
             }catch{
@@ -137,7 +155,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     
-   
+    
     
     
     
@@ -156,4 +174,5 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 }
 
- 
+
+

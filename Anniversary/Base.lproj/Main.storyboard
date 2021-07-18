@@ -129,6 +129,11 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JcX-e1-aUq" customClass="FSCalendar">
                                 <rect key="frame" x="31" y="134" width="363" height="343"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="headerMinimumDissolvedAlpha">
+                                        <real key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Mym-Jo-lai"/>
@@ -337,8 +342,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Clc-Iz-asW"/>
-        <segue reference="G1r-kr-HjD"/>
+        <segue reference="XUH-dw-B08"/>
+        <segue reference="WfM-Kv-dEG"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="ホームのフリーアイコン素材" width="30" height="30"/>
