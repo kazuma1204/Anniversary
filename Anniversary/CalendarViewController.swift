@@ -28,11 +28,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        myCalendar.dataSource = self
         myCalendar.delegate = self
         tableview.dataSource = self
         tableview.delegate = self
         
-        self.myCalendar.appearance.headerDateFormat = "YYYY年MM月"
+        self.myCalendar.appearance.headerDateFormat = "YYYY/MM"
         self.myCalendar.calendarWeekdayView.weekdayLabels[0].text = "日"
         self.myCalendar.calendarWeekdayView.weekdayLabels[1].text = "月"
         self.myCalendar.calendarWeekdayView.weekdayLabels[2].text = "火"
@@ -54,7 +55,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         } else if segue.identifier == "toVC2" {
             let RecordViewController = segue.destination as!  RecordViewController
             let formatter = DateFormatter()
-            formatter.dateFormat = "MM月dd日"
+            formatter.dateFormat = "MM/dd"
             let date = "\(formatter.string(from: selectDate))"
             RecordViewController.date = date
         }
@@ -74,10 +75,12 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
+        formatter.dateFormat = "MM/dd"
         let date = "\(formatter.string(from: selectDate))"
         self.itemList = realm.objects(Item.self).filter("date == %@", date)
         tableview.reloadData()
+        myCalendar.reloadData()
+        
     }
     
     // 選択した日付が変更されるたびに呼ばれる
@@ -85,7 +88,7 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
          print("select")
         selectDate = date
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
+        formatter.dateFormat = "MM/dd"
         let date = "\(formatter.string(from: date))"
         self.itemList = realm.objects(Item.self).filter("date == %@", date)
         tableview.reloadData()
@@ -103,9 +106,6 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
         
         let titleLabel = cell.contentView.viewWithTag(1) as! UILabel
         titleLabel.text = itemList[indexPath.row].title
-        
-        let contentLabel = cell.contentView.viewWithTag(2) as! UILabel
-        contentLabel.text = itemList[indexPath.row].content
         
         
         // セルに表示する値を設定する
@@ -128,6 +128,30 @@ class CalendarViewController: UIViewController, UITableViewDelegate, FSCalendarD
             tableView.reloadData()
         }
     }
+    
+    // イベントの数を決めている
+    func calendar(_ calendar: FSCalendar, numberOfEventsFor date: Date) -> Int{
+           var tmpList: Results<Item>!
+        
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MM/dd"
+        let datetext = "\(formatter.string(from: date))"
+        
+           // 対象の日付が設定されているデータを取得する
+           do {
+               let realm = try Realm()
+               tmpList = realm.objects(Item.self).filter("date == %@", datetext)
+           } catch {
+           }
+           return tmpList.count
+       }
+
+       // 日の始まりと終わりを取得
+       private func getBeginingAndEndOfDay(_ date:Date) -> (begining: Date , end: Date) {
+           let begining = Calendar(identifier: .gregorian).startOfDay(for: date)
+           let end = begining + 24*60*60
+           return (begining, end)
+       }
     
     
     /*

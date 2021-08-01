@@ -26,6 +26,20 @@ class DisplayViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.contentLabel.layer.borderColor = UIColor.orange.cgColor
+               //線の太さ(太さ)
+               self.contentLabel.layer.borderWidth = 2
+        
+//        //　ナビゲーションバーの背景色
+//            self.navigationController?.navigationBar.barTintColor = .orange
+            // ナビゲーションバーのアイテムの色　（戻る　＜　とか　読み込みゲージとか）
+            self.navigationController?.navigationBar.tintColor = .orange
+//            // ナビゲーションバーのテキストを変更する
+//            self.navigationController?.navigationBar.titleTextAttributes = [
+//            // 文字の色
+//                .foregroundColor: UIColor.white
+//            ]
 
         // Do any additional setup after loading the view.
     }

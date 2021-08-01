@@ -33,7 +33,12 @@ class RecordViewController: UIViewController {
         dateTextField.inputView = datePicker
         datePicker.locale = NSLocale(localeIdentifier: "ja_JP") as Locale
         
+        textview.contentInset = UIEdgeInsets(top: 20, left: 20, bottom: 20, right: 20)
 
+//        デザインについて
+        self.textview.layer.borderColor = UIColor.orange.cgColor
+               //線の太さ(太さ)
+               self.textview.layer.borderWidth = 2
         
         
         // 決定バーの生成
@@ -56,7 +61,7 @@ class RecordViewController: UIViewController {
         if date == nil {
         
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
+        formatter.dateFormat = "MM/dd"
         dateTextField.text = "\(formatter.string(from: datePicker.date))"
             
         } else {
@@ -80,46 +85,48 @@ class RecordViewController: UIViewController {
         
         // 日付のフォーマット
         let formatter = DateFormatter()
-        formatter.dateFormat = "MM月dd日"
+        formatter.dateFormat = "MM/dd"
         dateTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
     
     
     @IBAction func save() {
-        
-        if selectId == nil {
-            var maxId: Int { return try! Realm().objects(Item.self).sorted(byKeyPath: "id").last?.id ?? 0 }
-            let item:Item = Item()
-            
-
-                item.date = self.dateTextField.text
-                item.title = self.titleTextField.text
-                item.content = self.textview.text
-                item.id = maxId + 1
-                
-            
-            // 保存
-            let realm = try! Realm()
-            try! realm.write {
-                realm.add(item)
-            }
-            
-        } else {
-            
-            let realm = try! Realm()
-            let item = realm.objects(Item.self).filter("id == %d", selectId!).first!
-            
-            try! realm.write {
-                item.date = self.dateTextField.text
-                item.title = self.titleTextField.text
-                item.content = self.textview.text
-            }
-            
-        }
+       
         
         
         if titleTextField.text != "" {
+            
+            if selectId == nil {
+                var maxId: Int { return try! Realm().objects(Item.self).sorted(byKeyPath: "id").last?.id ?? 0 }
+                let item:Item = Item()
+                
+
+                    item.date = self.dateTextField.text
+                    item.title = self.titleTextField.text
+                    item.content = self.textview.text
+                    item.id = maxId + 1
+                    
+                
+                // 保存
+                let realm = try! Realm()
+                try! realm.write {
+                    realm.add(item)
+                }
+                
+            } else {
+                
+                let realm = try! Realm()
+                let item = realm.objects(Item.self).filter("id == %d", selectId!).first!
+                
+                try! realm.write {
+                    item.date = self.dateTextField.text
+                    item.title = self.titleTextField.text
+                    item.content = self.textview.text
+                }
+                
+            }
+            
 //        アラート出すやつ。
         let savealert: UIAlertController = UIAlertController(title: "保存しました", message: "", preferredStyle: .alert)
         
@@ -129,6 +136,8 @@ class RecordViewController: UIViewController {
         
         present(savealert, animated: true, completion: nil)
             
+            
+            
         } else {
             let notalert: UIAlertController = UIAlertController(title: "保存できません", message: "タイトルを入力してください", preferredStyle: .alert)
             
@@ -137,10 +146,6 @@ class RecordViewController: UIViewController {
             
             present(notalert, animated: true, completion: nil)
         }
-        
-        
-        
-        
     }
     
     

@@ -39,19 +39,22 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         searchBar.delegate = self;
         
+        searchBar.tintColor = UIColor.orange
+        
         
         
         // Do any additional setup after loading the view.
+        
+        
+
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         //        レルム内の並び替え（sort）
         self.itemList = realm.objects(Item.self).sorted(byKeyPath: "date", ascending: true)
-        print(itemList)
         searchResult = Array(itemList)
         tableview.reloadData()
-        print(searchResult)
     }
     
     //    再編集のために入れてみた。
@@ -82,6 +85,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
 //    エンターを押したとき（キャンセルバージョン）
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
         searchResult = Array(itemList)//できない
+        searchBar.text = ""
         searchBar.setShowsCancelButton(false, animated: true)
             searchBar.resignFirstResponder()
         tableview.reloadData()
@@ -89,14 +93,19 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     
 //    テキストを変えたとき（打ったとき）
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        var new: [Item] = []
+        
         if searchBar.text != "" {
             //検索文字列を含むデータを検索結果配列に追加する。
             for data in itemList {
                 if data.title!.contains(searchBar.text!) {
-                    searchResult.append(data)
+                    new.append(data)
                 }
             }
         }
+        
+        searchResult = new
         
         //テーブルを再読み込みする。
         tableview.reloadData()
@@ -107,10 +116,7 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         //キーボードを閉じる。
         view.endEditing(true)
-        if let word = searchBar.text {
-            // デバッグエリアに出力
-            print(word)
-        }
+        searchBar.setShowsCancelButton(false, animated: true)
     }
     
     
@@ -138,7 +144,8 @@ class ListViewController: UIViewController, UITableViewDelegate, UITableViewData
                 let realm = try Realm()
                 try realm.write {
                     realm.delete(self.searchResult[indexPath.row])
-                }
+                    searchResult.remove(at: indexPath.row)
+                                    }
                 
             }catch{
             }
