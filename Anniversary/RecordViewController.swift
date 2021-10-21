@@ -8,7 +8,9 @@
 import UIKit
 import RealmSwift
 
-class RecordViewController: UIViewController {
+class RecordViewController: UIViewController, UIImagePickerControllerDelegate & UINavigationControllerDelegate {
+    
+    let realm = try! Realm()
     
     var date: String?
     var content: String?
@@ -17,14 +19,23 @@ class RecordViewController: UIViewController {
     @IBOutlet var dateTextField: UITextField!
     @IBOutlet var textview: UITextView!
     @IBOutlet var titleTextField: UITextField!
+    @IBOutlet var photoImage: UIImageView?
     
    
     var datePicker: UIDatePicker = UIDatePicker()
     
+    var imagePickerController:UIImagePickerController=UIImagePickerController()
+    
+    var image:UIImage!
+    
+    // ドキュメントディレクトリの「ファイルURL」（URL型）定義
+    var documentDirectoryFileURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    
+    // ドキュメントディレクトリの「パス」（String型）定義
+    let filePath = NSSearchPathForDirectoriesInDomains(.documentDirectory, .userDomainMask, true)[0]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
         // ピッカー設定
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.datePickerMode = UIDatePicker.Mode.date
@@ -51,9 +62,6 @@ class RecordViewController: UIViewController {
         dateTextField.inputView = datePicker
         dateTextField.inputAccessoryView = toolbar
         
-        
-
-             
         dateTextField.text = date
         textview.text = content
         titleTextField.text = title
@@ -76,6 +84,17 @@ class RecordViewController: UIViewController {
     
     
 
+    @IBAction func  openPhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+            let Picker = UIImagePickerController()
+            Picker.sourceType = .photoLibrary
+            Picker.delegate = self
+            
+            Picker.allowsEditing = true
+            
+            present(Picker, animated: true, completion: nil)
+        }
+    }
     
     
     
@@ -89,16 +108,49 @@ class RecordViewController: UIViewController {
         dateTextField.text = "\(formatter.string(from: datePicker.date))"
     }
     
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        image = info[.originalImage] as? UIImage
+        
+        //containerViewの内容にアクセス
+        photoImage?.image = image
+        
+        
+        self.dismiss(animated: true, completion: nil)
+    }
+    
+    func createLocalDataFile() {
+        // 作成するテキストファイルの名前
+        let fileName = "\(NSUUID().uuidString).png"
+        
+        // DocumentディレクトリのfileURLを取得
+        if documentDirectoryFileURL != nil {
+            // ディレクトリのパスにファイル名をつなげてファイルのフルパスを作る
+            let path = documentDirectoryFileURL.appendingPathComponent(fileName)
+            documentDirectoryFileURL = path
+        }
+    }
+    
+    
+    func saveImage() {
+        createLocalDataFile()
+        //pngで保存する場合
+        let pngImageData = image.pngData()
+        do {
+            try pngImageData!.write(to: documentDirectoryFileURL)
+        } catch {
+            //エラー処理
+            print("エラー")
+        }
+    }
     
     
     @IBAction func save() {
-       
-        
         
         if titleTextField.text != "" {
             
             if selectId == nil {
                 var maxId: Int { return try! Realm().objects(Item.self).sorted(byKeyPath: "id").last?.id ?? 0 }
+                
                 let item:Item = Item()
                 
 
@@ -107,6 +159,7 @@ class RecordViewController: UIViewController {
                     item.content = self.textview.text
                     item.id = maxId + 1
                     
+                item.imageURL = documentDirectoryFileURL.absoluteString
                 
                 // 保存
                 let realm = try! Realm()
@@ -154,11 +207,31 @@ class RecordViewController: UIViewController {
     }
     
     
+    @IBAction func snsShare() {
+        
+        let shareText = "新しい記念日を作ったよ！"
+        let shareImage = photoImage?.image
+        
+        let activityItems: [Any] = [shareText, shareImage]
+        
+        let activityViewController = UIActivityViewController(activityItems: activityItems, applicationActivities: nil)
+        
+        let excludedActivityTypes = [UIActivity.ActivityType.postToWeibo, .saveToCameraRoll, .print]
+        
+        activityViewController.excludedActivityTypes = excludedActivityTypes
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    
     /*
      // MARK: - Navigation
      
      // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+     override func prepare(for segue: UIStoryboardSegue, sende
+     r: Any?) {
      // Get the new view controller using segue.destination.
      // Pass the selected object to the new view controller.
      }

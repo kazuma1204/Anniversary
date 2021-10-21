@@ -13,6 +13,8 @@ class Item: Object {
     @objc dynamic var title: String? = nil
     @objc dynamic var content: String? = nil
     @objc dynamic var id: Int = 0
+    @objc dynamic var imageURL:String=""
+    
     override static func primaryKey() -> String? {
         return "id"
     }

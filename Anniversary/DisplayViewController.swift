@@ -14,6 +14,8 @@ class DisplayViewController: UIViewController {
     var content: String!
     var selectId: Int!
     
+    @IBOutlet var photoImage: UIImageView?
+    
   
 
     var itemList: Results<Item>!
@@ -51,6 +53,11 @@ class DisplayViewController: UIViewController {
 //        データの再取得
         let selectKB = realm.objects(Item.self).filter("id = \(selectId!)").first!
         
+        let fileURL=URL(string: selectKB.imageURL)
+        let filePath=fileURL?.path
+                
+            photoImage?.image=UIImage(contentsOfFile: filePath!)
+        
         content = selectKB.content
         title = selectKB.title
         date = selectKB.date
@@ -59,6 +66,8 @@ class DisplayViewController: UIViewController {
         titleLabel.text = title
         dateLabel.text = date
     }
+    
+
     
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,6 +85,7 @@ class DisplayViewController: UIViewController {
     }
     
     
+
     /*
     // MARK: - Navigation
 

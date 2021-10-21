@@ -45,6 +45,12 @@
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
 	<string>Main</string>
+	<key>LSApplicationCategoryType</key>
+	<string></string>
+	<key>CFBundleDisplayName</key>
+	<string></string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>記念日のメモに載せる写真をフォトライブラリから呼び出します</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>

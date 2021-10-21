@@ -209,22 +209,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="BcU-hK-0yr">
-                                <rect key="frame" x="67" y="133" width="255" height="34"/>
+                                <rect key="frame" x="78" y="104" width="255" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cuM-8p-s7P">
-                                <rect key="frame" x="20" y="284" width="362" height="458"/>
+                                <rect key="frame" x="26" y="577" width="356" height="177"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="backgroundColor" systemColor="opaqueSeparatorColor"/>
                                 <color key="tintColor" systemColor="labelColor"/>
                                 <color key="textColor" systemColor="labelColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                             <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uFK-IV-hbC">
-                                <rect key="frame" x="67" y="207" width="255" height="34"/>
+                                <rect key="frame" x="75" y="181" width="255" height="34"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -241,7 +241,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1lA-V6-rn4">
-                                <rect key="frame" x="78" y="762" width="258" height="60"/>
+                                <rect key="frame" x="75" y="777" width="258" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemOrangeColor"/>
                                 <state key="normal" title="save">
@@ -251,6 +251,26 @@
                                     <action selector="save" destination="7iY-Tn-pxO" eventType="touchUpInside" id="q3c-X5-ZG8"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fI-eQ-bvB">
+                                <rect key="frame" x="26" y="66" width="46" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="snsShare" destination="7iY-Tn-pxO" eventType="touchUpInside" id="1mG-fQ-XCF"/>
+                                </connections>
+                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Ya0-E5-dNE">
+                                <rect key="frame" x="44" y="249" width="320" height="320"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4m4-cq-kLz">
+                                <rect key="frame" x="133" y="66" width="77" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="写真の追加"/>
+                                <connections>
+                                    <action selector="openPhoto" destination="7iY-Tn-pxO" eventType="touchUpInside" id="f9a-29-lAc"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="9zW-MD-5cZ"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -258,13 +278,14 @@
                     <navigationItem key="navigationItem" id="fdb-bP-QXz"/>
                     <connections>
                         <outlet property="dateTextField" destination="BcU-hK-0yr" id="vva-Pv-AKd"/>
+                        <outlet property="photoImage" destination="Ya0-E5-dNE" id="chV-pV-yHg"/>
                         <outlet property="textview" destination="cuM-8p-s7P" id="b0z-AK-Wh9"/>
                         <outlet property="titleTextField" destination="uFK-IV-hbC" id="hpX-eN-jQy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="LhU-T3-Vai" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1673.913043478261" y="158.70535714285714"/>
+            <point key="canvasLocation" x="1592.753623188406" y="21.428571428571427"/>
         </scene>
         <!--Display View Controller-->
         <scene sceneID="tix-D0-8SU">
@@ -293,12 +314,16 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jKB-RU-uV6">
-                                        <rect key="frame" x="30" y="323" width="355" height="460"/>
+                                        <rect key="frame" x="30" y="600" width="355" height="183"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TmN-69-wc3">
+                                        <rect key="frame" x="89" y="354" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    </imageView>
                                 </subviews>
                                 <viewLayoutGuide key="safeArea" id="JBl-id-jIh"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -324,6 +349,7 @@
                     <connections>
                         <outlet property="contentLabel" destination="jKB-RU-uV6" id="1gU-9g-Fhn"/>
                         <outlet property="dateLabel" destination="1it-kF-ijc" id="pFD-Wa-rQB"/>
+                        <outlet property="photoImage" destination="TmN-69-wc3" id="Xko-Ss-YI1"/>
                         <outlet property="titleLabel" destination="BvR-6q-duX" id="zKg-j1-iej"/>
                         <segue destination="7iY-Tn-pxO" kind="presentation" identifier="toVC0" id="siP-AG-52t"/>
                     </connections>
@@ -353,7 +379,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Clc-Iz-asW"/>
+        <segue reference="XUH-dw-B08"/>
         <segue reference="siP-AG-52t"/>
     </inferredMetricsTieBreakers>
     <resources>
@@ -361,6 +387,9 @@
         <image name="虫眼鏡の無料アイコン8" width="30" height="30"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="opaqueSeparatorColor">
+            <color red="0.77647058823529413" green="0.77647058823529413" blue="0.78431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
